@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
+* {
+  font-family: roboto;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #290628;
+  margin: 0;
+}

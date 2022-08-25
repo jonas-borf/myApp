@@ -1,0 +1,17 @@
+.container {
+  height: 150px;
+  width: 500px;
+  background: #3B0086;
+
+  align-items: center;
+  justify-content: center;
+
+
+}
+
+.scramble {
+  font-size: 50px;
+
+  top: 25px;
+
+}

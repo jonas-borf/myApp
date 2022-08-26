@@ -1,0 +1,10 @@
+<div class="container">
+  <ul>
+  <li *ngFor="let time of times; let i = index">
+    {{i + 1}}: {{time}}
+  </li>
+</ul>
+</div>
+
+<app-timer (notifyGetItems)="get()" **ngIf="times == -1"
+></app-timer>

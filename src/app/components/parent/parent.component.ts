@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ScramblerComponent } from '../scrambler/scrambler.component';
 @Component({
   selector: 'app-parent',
@@ -7,14 +7,14 @@ import { ScramblerComponent } from '../scrambler/scrambler.component';
 })
 export class ParentComponent implements OnInit {
 
-  constructor(private scrambler:ScramblerComponent) { }
+
+  @ViewChild(ScramblerComponent) scrambler: any;
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  callScrambleFunc() {
+  callScramble() {
     this.scrambler.rescramble();
   }
-
-
 }

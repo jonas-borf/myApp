@@ -1,15 +1,13 @@
 .container {
-  height: 150px;
-  width: 500px;
+  height: 20vw;
+  width: 90vw;
   background: #06ae4c;
-  position: absolute;
-  top: 20px;
-  left: 35vw;
+
   border-radius: 10px;
 }
 
 .scramble {
-  font-size: 50px;
+  font-size: 5vw;
   top: 25px;
   color: #6200B3;
 }

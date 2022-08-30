@@ -7,6 +7,7 @@ import { TimerComponent } from './components/timer/timer.component';
 import { ScramblerComponent } from './components/scrambler/scrambler.component';
 import { TimesComponent } from './components/times/times.component';
 import { ParentComponent } from './components/parent/parent.component';
+import { EmitterComponent } from './components/emitter/emitter.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { ParentComponent } from './components/parent/parent.component';
     ScramblerComponent,
     TimesComponent,
     ParentComponent,
+    EmitterComponent,
 
   ],
   imports: [

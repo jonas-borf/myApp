@@ -1,4 +1,6 @@
-
+<app-emitter (notifyKeyDown)="keyDown($event)"
+(notifyKeyUp)="keyUp($event)"></app-emitter>
 <app-scrambler></app-scrambler>
-<app-timer (notifyTimerStart)="callScramble()"></app-timer>
+<app-timer (notifyTimerStart)="callScramble()"
+(notifyGetItems)="getTimes()"></app-timer>
 <app-times></app-times>

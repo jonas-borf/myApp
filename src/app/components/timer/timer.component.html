@@ -1,4 +1,10 @@
-<div class="timer">
+<div class="timer" *ngIf="timerRunning">
+  <div class="time" *ngIf="time"
+  [ngStyle]="{ 'color': color }">{{ time.toFixed(2) }}</div>
+  <div class="time" *ngIf="!time"
+   [ngStyle]="{ 'color': color }">0</div>
+</div>
+<div class="timer" *ngIf="!timerRunning">
   <div class="time" *ngIf="time"
   [ngStyle]="{ 'color': color }">{{ time.toFixed(3) }}</div>
   <div class="time" *ngIf="!time"

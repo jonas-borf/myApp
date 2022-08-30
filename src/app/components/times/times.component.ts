@@ -6,23 +6,16 @@ import { LocalService } from 'src/app/services/local-service.service';
   styleUrls: ['./times.component.css']
 })
 export class TimesComponent implements OnInit {
-  times!: Array<any>;
-  valid: boolean = true;
-  i: number = 0;
+  times!: any;
   constructor(private local: LocalService) { }
 
   ngOnInit(): void {
   }
 
-   get() {
+  getTimes() {
 
-    while (this.valid) {
-      this.times.push(this.local.getData(this.i.toString()))
-      this.i++;
-      if (!this.local.getData(this.i.toString())) {
-        this.valid = false;
-      }
-    }
+
+
   }
 
 }

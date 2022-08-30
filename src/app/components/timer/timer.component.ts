@@ -18,6 +18,7 @@ export class TimerComponent implements OnInit {
   stop: boolean = false;
   valid: boolean = false;
   changeColor!: any;
+  times: Array<string> = []
   @Output() notifyTimerStart = new EventEmitter();
   @Output() notifyGetItems = new EventEmitter();
   constructor(private local: LocalService) {}
@@ -25,37 +26,45 @@ export class TimerComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @HostListener('window:keydown', ['$event'])
-  spaceEvent(event: any) {
-    if (event.keyCode == 32 && !this.timerRunning && !this.stop) {
-      this.color = 'red';
-      this.stop = true;
-       this.changeColor = setTimeout(() => {
 
-        this.color = 'green';
-      }, 500);
-      this.changeColor;
-    } else if (event.keyCode && this.timerRunning) {
+
+
+    keyUp(event: { key: string; }) {
+      console.log(event);
+
+      if (event.key == ' ' && !this.timerRunning && this.color == 'green') {
+        this.terminateTimer = false;
+        this.timerStart();
+        this.color = 'black';
+        this.notifyTimerStart.emit();
+        this.stop = false;
+      } else if (event.key == ' ' && !this.timerRunning && this.color == 'red') {
+        clearTimeout(this.changeColor);
+        this.stop = false;
+        this.color = 'black';
+      }
+    }
+
+    keyDown($event: any) {
+      console.log($event);
+      console.log($event.code, this.timerRunning, this.stop);
+
+      if ($event.key == ' ' && !this.timerRunning && !this.stop) {
+        console.log('here');
+
+        this.color = 'red';
+        this.stop = true;
+        this.changeColor = setTimeout(() => {
+          this.color = 'green';
+        }, 500);
+        this.changeColor;
+      } else if ($event.key && this.timerRunning) {
         this.terminateTimer = true;
         this.notifyGetItems.emit();
-         this.timerRunning = false;
+        this.timerRunning = false;
+}
+console.log('end');
 
-    }
-  }
-  @HostListener('window:keyup', ['$event'])
-  keyEvent(event: KeyboardEvent) {
-    console.log(event);
-    if (event.key == ' ' && !this.timerRunning && this.color == 'green') {
-      this.terminateTimer = false;
-      this.timerStart();
-      this.color = 'black'
-      this.notifyTimerStart.emit();
-      this.stop = false;
-    } else if (event.key == ' ' && !this.timerRunning && this.color == 'red') {
-      clearTimeout(this.changeColor);
-      this.stop = false;
-      this.color = 'black';
-    }
     }
 
   timerStart() {
@@ -70,8 +79,8 @@ export class TimerComponent implements OnInit {
         this.color = 'black';
         console.log('terminating timer');
         clearInterval(timer);
-        this.local.saveData(this.i.toString(), this.time.toString())
-        this.i++;
+        this.times.push(this.time.toString());
+        localStorage.setItem('times', JSON.stringify(this.times));
       }
       this.time += 0.01;
     }, 10);

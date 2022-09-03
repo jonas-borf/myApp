@@ -17,11 +17,12 @@ export class ParentComponent implements OnInit {
 
   callScramble() {
     this.scrambler.rescramble();
+
   }
 
   getTimes() {
-    this.times.getTimes();
-  }
+  this.times.getTimesFromLocalStorage();
+}
 
   timerStart() {
 

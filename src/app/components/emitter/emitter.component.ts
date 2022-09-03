@@ -19,11 +19,11 @@ export class EmitterComponent implements OnInit {
     console.log(event.key);
     // event is sent here but all values are undefined for some reason
 
-    this.notifyKeyDown.emit({event: event});
+    this.notifyKeyDown.emit(event);
   }
    @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    this.notifyKeyUp.emit({event: event});
+    this.notifyKeyUp.emit(event);
   }
   // keep all the event emmitters here for better organization
 }

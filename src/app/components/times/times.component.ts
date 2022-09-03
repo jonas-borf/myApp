@@ -10,12 +10,14 @@ export class TimesComponent implements OnInit {
   constructor(private local: LocalService) { }
 
   ngOnInit(): void {
+    this.getTimesFromLocalStorage();
   }
 
-  getTimes() {
-
-
-
+  getTimesFromLocalStorage() {
+    let temp = localStorage.getItem('times');
+    this.times = JSON.parse(temp || '');
   }
+
+
 
 }

@@ -8,6 +8,7 @@ import { ScramblerComponent } from './components/scrambler/scrambler.component';
 import { TimesComponent } from './components/times/times.component';
 import { ParentComponent } from './components/parent/parent.component';
 import { EmitterComponent } from './components/emitter/emitter.component';
+import { AveragesComponent } from './components/averages/averages.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { EmitterComponent } from './components/emitter/emitter.component';
     TimesComponent,
     ParentComponent,
     EmitterComponent,
+    AveragesComponent,
 
   ],
   imports: [

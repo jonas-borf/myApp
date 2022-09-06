@@ -1,8 +1,11 @@
 <div class="container">
   <ul>
   <li *ngFor="let time of times; let i = index">
-      {{ time }}
+     {{ i + 1 }}: {{ time }}
   </li>
 </ul>
 </div>
+
+<button class="btn" (click)="clearTimes()">Clear Times</button>
+
 

@@ -12,20 +12,23 @@ export class TimerComponent implements OnInit {
   i: number = 1;
   start!: number;
   end!: number;
-  color: string = 'black';
+  color: string = 'lightblue';
   timerRunning: boolean = false;
   terminateTimer: boolean = false;
   stop: boolean = false;
   valid: boolean = false;
   changeColor!: any;
+
   terminateCountDown: boolean = false;
   countDownRunning: boolean = false;
-  times: Array<Array<string>> = JSON.parse(localStorage.getItem('times') || '');
+  times: Array<string> = JSON.parse(localStorage.getItem('times') || '');
   @Output() notifyTimerStart = new EventEmitter();
   @Output() notifyGetItems = new EventEmitter();
   constructor(private local: LocalService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   countDown!: any;
 
@@ -33,7 +36,7 @@ export class TimerComponent implements OnInit {
 
     if (event.key == ' ' && !this.timerRunning && !this.countDownRunning && this.color == 'green') {
       this.countDownTimer();
-      this.color = 'black';
+      this.color = 'lightblue';
       this.timerRunning = false;
       this.stop = false;
     } else if (
@@ -45,13 +48,14 @@ export class TimerComponent implements OnInit {
       this.terminateTimer = false;
 
       this.timerStart();
-      this.color = 'black';
+      this.color = 'lightblue';
       this.notifyTimerStart.emit();
       this.stop = false;
-    } else if (event.key == ' ' && !this.timerRunning && this.color == 'red') {
+    } else if (event.key == ' ' && !this.timerRunning && (this.color == 'red' || this.color == 'yellow')) {
       clearTimeout(this.changeColor);
+
       this.stop = false;
-      this.color = 'black';
+      this.color = 'lightblue';
     }
   }
 
@@ -63,8 +67,11 @@ export class TimerComponent implements OnInit {
       this.color = 'red';
       this.stop = true;
       this.changeColor = setTimeout(() => {
-        this.color = 'green';
-      }, 500);
+        setTimeout(() => {
+          this.color = 'green';
+        }, 250);
+        this.color = 'yellow';
+      }, 250)
 
     } else if ($event.key && this.timerRunning) {
       this.terminateTimer = true;
@@ -87,7 +94,7 @@ export class TimerComponent implements OnInit {
         this.end = Date.now();
         this.time = (this.end - this.start) / 1000;
         this.stop = false;
-        this.color = 'black';
+        this.color = 'lightblue';
         console.log('terminating timer');
         clearInterval(timer);
         this.addToLocalStorage();
@@ -118,12 +125,16 @@ export class TimerComponent implements OnInit {
   }
 
   addToLocalStorage() {
-    this.times.push([this.time.toString(), this.i.toString()]);
+    this.times.push(this.time.toString());
     let temp = JSON.stringify(this.times);
     localStorage.setItem('times', temp);
-    this.i++;
+
     console.log(localStorage.getItem('times'));
 
+  }
+
+  updateTimes() {
+    this.times = JSON.parse(localStorage.getItem('times') || '');
   }
 }
 

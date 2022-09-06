@@ -3,4 +3,5 @@
 <app-scrambler></app-scrambler>
 <app-timer (notifyTimerStart)="callScramble()"
 (notifyGetItems)="getTimes()"></app-timer>
-<app-times></app-times>
+<app-times (get)="getTimes()"></app-times>
+<app-averages></app-averages>

@@ -1,7 +1,7 @@
 .container {
-  height: 20vw;
-  width: 90vw;
-  background: #06ae4c;
+  height: auto;
+  width: auto;
+  background: black;
 
   border-radius: 10px;
 }
@@ -9,5 +9,5 @@
 .scramble {
   font-size: 5vw;
   top: 25px;
-  color: #6200B3;
+
 }

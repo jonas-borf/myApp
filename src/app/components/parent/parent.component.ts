@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { AveragesComponent } from '../averages/averages.component';
 import { ScramblerComponent } from '../scrambler/scrambler.component';
 import { TimerComponent } from '../timer/timer.component';
 import { TimesComponent } from '../times/times.component';
@@ -11,17 +12,24 @@ export class ParentComponent implements OnInit {
   @ViewChild(ScramblerComponent) scrambler: any;
   @ViewChild(TimesComponent) times: any;
   @ViewChild(TimerComponent) timer: any;
+  @ViewChild(AveragesComponent) avg: any;
   constructor() {}
 
   ngOnInit(): void {}
 
   callScramble() {
-    this.scrambler.rescramble();
+this.scrambler.rescramble();
 
   }
 
   getTimes() {
-  this.times.getTimesFromLocalStorage();
+  setTimeout(() => {
+    this.times.getTimesFromLocalStorage();
+    this.avg.ao5();
+    this.timer.updateTimes();
+  }, 10)
+
+
 }
 
   timerStart() {
